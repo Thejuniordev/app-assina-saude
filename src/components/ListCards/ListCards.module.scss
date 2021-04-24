@@ -1,0 +1,72 @@
+@import '../../styles/variables';
+.cards {
+    margin: 20px 0;
+    &__content {
+        display: flex;
+        align-items: flex-start;
+    }
+}
+
+.date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    padding-top: 10px;
+    color: $bg_cyan;
+    &__day {
+        font-size: 1.6rem;
+    }
+    &__month {
+        font-size: 1rem;
+    }
+    &__year {
+        font-size: 1rem;
+    }
+}
+
+.card {
+    width: 100%;
+    overflow: hidden;
+    background-color: $white;
+    border-radius: 8px;
+    &__header {
+        display: flex;
+        background-color: $bg_cyan;
+        padding: 10px;
+        span {
+            font-size: 1.0rem;
+            color: $white;
+        }
+    }
+    &__name {
+        background-color: rgba($bg_cyan, $alpha_5);
+        padding: 10px;
+        strong {
+            color: $text_cyan;
+        }
+    }
+    &__content {
+        padding: 0 10px 20px;
+        strong {
+            margin-top: 15px;
+            color: rgba($black, $alpha_8);
+        }
+        span {
+            color: rgba($black, $alpha_7);
+        }
+        .tags {
+            display: flex;
+            span {
+                background-color: rgba($bg_cyan, $alpha_5);
+                padding: 5px 15px;
+                border-radius: 50px;
+                margin: 5px;
+                &:first-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}
