@@ -14,6 +14,38 @@ ul {
     list-style: none;
 }
 
+label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+select {
+    width: 100%;
+    height: 40px;
+    border: none;
+    background-color: $bg_default;
+    border-radius: 5px;
+    padding: 0 6px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+option {
+    box-sizing: border-box;
+    width: 100%;
+}
+textarea {
+    width: 100%;
+    height: 80px;
+    border: none;
+    background-color: $bg_default;
+    border-radius: 5px;
+    padding: 6px;
+    outline: none;
+    resize: none;
+}
+
 .container {
     width: 100%;
     max-width: 1280px;

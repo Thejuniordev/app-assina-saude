@@ -1,0 +1,23 @@
+@import '../../styles/variables';
+.form {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    background-color: $white;
+    border-radius: 8px;
+    box-shadow: 1px 1px 12px 5px rgba($black, $alpha_2);
+    overflow: hidden;
+    &__header {
+        background-color: $bg_cyan;
+        padding: 10px;
+    }
+    form {
+        padding: 0 10px 20px;
+    }
+    &__control {
+        margin: 20px 0;
+        width: 100%;
+    }
+}
