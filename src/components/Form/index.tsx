@@ -1,49 +1,76 @@
 import { Buttons } from '../Buttons';
 import { api } from '../../services/api';
-import { GetStaticProps } from 'next';
+import Select from 'react-select'
 import styles from './Form.module.scss';
+import { FormEvent, useState } from 'react';
 
 interface Option {
     label: string,
     id: number,
 }
 
-type FormOptions = {
+interface SetForm {
+    queixa: string,
+    doenca: [],
+    historico: string
+}
+interface FormOptions {
     optionToQueixas: Option[],
-    optionToDoencas: Option[]
+    optionToDoencas: Option[],
+    options: SetForm
 }
 
-export function Form({optionToQueixas, optionToDoencas}: FormOptions) {
+
+export function Form({optionToQueixas, optionToDoencas, options}: FormOptions) {
+    const [queixa, setQueixas] = useState<string>(); 
+    const [doenca, setDoenca] = useState([]);
+    const [historico, setHistorico] = useState<string>();
+    const [validate, setValidate] = useState(true);
+
+    async function setProntuario(event:FormEvent) {
+        event.preventDefault();
+        
+        api.post('/prontuario', {
+            queixa,
+            doenca,
+            historico
+        });
+    }
+    
     return (
         <section className={styles.form}>
             <div className={styles.form__header}>
                 <strong>Anamnese</strong>
             </div>
-            <form action="" method="post">
+            <form onSubmit={setProntuario}>
                 <div className={styles.form__control}>
                     <label htmlFor="queixas">Queixa Principal</label>
-                    <select name="Select" id="queixas">
+                    <select value={queixa} onChange={(event) => setQueixas(event.target.value)}>
                         <option value="Selecione">Selecione...</option>
                         {optionToQueixas.map(option => {
-                          return <option value={option.label} id={String(option.id)} key={option.id}>{option.label}</option>
+                          return <option 
+                                    value={option.id} 
+                                    id={String(option.id)} 
+                                    key={option.id}>{option.label}</option>
                         })}
                     </select>
                 </div>
 
                 <div className={styles.form__control}>
                     <label htmlFor="">Doenças Adulto</label>
-                    <select name="Select" id="">
+                    <select value={doenca} onChange={(event) => setDoenca([event.target.value])}>
                         <option value="Selecione">Selecione...</option>
                         {optionToDoencas.map(option => {
-                          return <option value={option.label} id={String(option.id)} key={option.id}>{option.label}</option>
+                          return <option value={option.id} id={String(option.id)} key={option.id}>{option.label}</option>
                         })}
                     </select>
                     <span className="text">Selecionados</span>
+                    <span>{doenca}</span>
                 </div>
 
                 <div className={styles.form__control}>
                     <label htmlFor="">Histórico da Moléstia</label>
-                    <textarea name="" id=""></textarea>
+                    <textarea value={historico} onChange={(event) => setHistorico(event.target.value)}></textarea>
                 </div>
                 <Buttons></Buttons>
             </form>

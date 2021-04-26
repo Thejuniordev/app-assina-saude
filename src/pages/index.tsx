@@ -42,8 +42,7 @@ export const getStaticProps: GetStaticProps = async () =>  {
         id: option.id,
         label: option.label
     };
-})
-
+});
   
   return {
       props: {
